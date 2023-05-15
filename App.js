@@ -11,12 +11,20 @@ import ManageExpenses from "./screens/ManageExpenses";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Global } from "./constants/styles";
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 const ExpensesOverview = () => {
   return (
-    <BottomTabs.Navigator screenOptions={{}}>
+    <BottomTabs.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: Global.colors.primary500 },
+        headerTintColor: "white",
+        tabBarStyle: { backgroundColor: Global.colors.primary500 },
+        tabBarActiveTintColor: Global.colors.accent500,
+      }}
+    >
       <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} />
       <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
     </BottomTabs.Navigator>
@@ -33,6 +41,7 @@ export default function App() {
             name="ExpensesOverview"
             component={ExpensesOverview}
             options={{
+              // NOTE we had double headers since we are using the stack and bottom tabs. So we are hiding one of the headers
               headerShown: false,
             }}
           />
