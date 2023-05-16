@@ -15,3 +15,4 @@ const ExpensesOutput = ({ expenses, period, sum }) => {
 const styles = StyleSheet.create({});
 
 export default ExpensesOutput;
+// NOTE start from here
