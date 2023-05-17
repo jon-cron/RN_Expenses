@@ -1,12 +1,9 @@
 import React from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
+import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 
 const AllExpenses = () => {
-  return (
-    <View>
-      <Text>AllExpenses</Text>
-    </View>
-  );
+  return <ExpensesOutput period={"All expenses"} />;
 };
 
 const styles = StyleSheet.create({});

@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 
 const ExpensesSummary = ({ period, expenses }) => {
-  useEffect(() => {
-    const expensesTotal = expenses.reduce((sum, expense) => {
-      return sum + expense.amount;
-    }, 0);
-    return expensesTotal;
-  }, [expenses]);
+  const expensesTotal = expenses.reduce((sum, expense) => {
+    return sum + expense.amount;
+  }, 0);
 
   return (
     <View>

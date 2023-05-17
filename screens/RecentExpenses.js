@@ -1,12 +1,9 @@
 import React from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
+import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 
 const RecentExpenses = () => {
-  return (
-    <View>
-      <Text>RecentExpenses</Text>
-    </View>
-  );
+  return <ExpensesOutput period={"Last 7 days"} />;
 };
 
 const styles = StyleSheet.create({});
