@@ -5,9 +5,9 @@ import { getFormattedDate } from "../../utilities/date";
 import { useNavigation } from "@react-navigation/native";
 
 const ExpenseItem = ({ date, description, amount }) => {
-  const navigate = useNavigation();
+  const navigation = useNavigation();
   const expensePressHandler = () => {
-    navigate.navigate("ManageExpense");
+    navigation.navigate("ManageExpense");
   };
 
   return (
