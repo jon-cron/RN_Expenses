@@ -3,10 +3,10 @@ import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import ExpensesList from "./ExpensesList";
 import ExpensesSummary from "./ExpensesSummary";
 
-const ExpensesOutput = ({ expenses, period, sum }) => {
+const ExpensesOutput = ({ expenses, period }) => {
   return (
     <View>
-      <ExpensesSummary sum={sum} period={period} />
+      <ExpensesSummary expenses={expenses} period={period} />
       <ExpensesList data={expenses} />
     </View>
   );
