@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import ExpenseItem from "./ExpenseItem";
 
-const renderItem = (itemData) => {
-  return <ExpenseItem data={itemData} />;
+const renderItem = ({ item }) => {
+  return <ExpenseItem {...item} />;
 };
 
 const ExpensesList = ({ data }) => {

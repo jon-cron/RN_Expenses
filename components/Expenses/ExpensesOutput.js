@@ -35,6 +35,42 @@ const DUMMY_EXPENSES = [
     amount: 10.0,
     date: new Date("2023-03-05"),
   },
+  {
+    id: "e6",
+    description: "phone charger",
+    amount: 19.99,
+    date: new Date("2023-02-05"),
+  },
+  {
+    id: "e7",
+    description: "car repair",
+    amount: 120.25,
+    date: new Date("2022-12-15"),
+  },
+  {
+    id: "e8",
+    description: "lunch",
+    amount: 10.0,
+    date: new Date("2023-03-05"),
+  },
+  {
+    id: "e9",
+    description: "phone charger",
+    amount: 19.99,
+    date: new Date("2023-02-05"),
+  },
+  {
+    id: "e10",
+    description: "car repair",
+    amount: 120.25,
+    date: new Date("2022-12-15"),
+  },
+  {
+    id: "e11",
+    description: "lunch",
+    amount: 10.0,
+    date: new Date("2023-03-05"),
+  },
 ];
 
 const ExpensesOutput = ({ expenses, period }) => {
