@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { Global } from "../constants/styles";
+import Button from "../components/UI/Button";
 
 const ManageExpenses = ({ route, navigation }) => {
   // NOTE since we can land on this screen without params we must use params?. to avoid errors
@@ -14,12 +15,22 @@ const ManageExpenses = ({ route, navigation }) => {
     });
   }, [isEditting, navigation]);
 
-  const handleDelete = () => {
-    console.log(expenseId);
+  const handleDelete = () => {};
+  const cancelHandler = () => {
+    // NOTE this function allows you to close a screen and go back to the previous page
+    navigation.goBack();
   };
-
+  const confirmHandler = () => {};
   return (
     <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
+          Cancel
+        </Button>
+        <Button style={styles.button} onPress={confirmHandler}>
+          Update
+        </Button>
+      </View>
       {isEditting && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -46,6 +57,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: Global.colors.primary800,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  button: {
+    minWidth: 120,
   },
 });
 
