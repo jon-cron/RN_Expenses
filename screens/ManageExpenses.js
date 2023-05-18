@@ -28,7 +28,7 @@ const ManageExpenses = ({ route, navigation }) => {
           Cancel
         </Button>
         <Button style={styles.button} onPress={confirmHandler}>
-          Update
+          {isEditting ? "Update" : "Add"}
         </Button>
       </View>
       {isEditting && (
