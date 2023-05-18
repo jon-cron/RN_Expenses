@@ -14,6 +14,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Global } from "./constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import IconButton from "./components/UI/IconButton";
+import ExpensesContextProvider from "./store/expenses-context";
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
@@ -67,30 +68,32 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: { backgroundColor: Global.colors.primary500 },
-            headerTintColor: "white",
-          }}
-        >
-          <Stack.Screen
-            name="ExpensesOverview"
-            component={ExpensesOverview}
-            options={{
-              // NOTE we had double headers since we are using the stack and bottom tabs. So we are hiding one of the headers
-              headerShown: false,
+      <ExpensesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: { backgroundColor: Global.colors.primary500 },
+              headerTintColor: "white",
             }}
-          />
-          <Stack.Screen
-            name="ManageExpense"
-            component={ManageExpenses}
-            options={{
-              presentation: "modal",
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="ExpensesOverview"
+              component={ExpensesOverview}
+              options={{
+                // NOTE we had double headers since we are using the stack and bottom tabs. So we are hiding one of the headers
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="ManageExpense"
+              component={ManageExpenses}
+              options={{
+                presentation: "modal",
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }
