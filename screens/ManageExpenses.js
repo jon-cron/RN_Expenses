@@ -30,13 +30,13 @@ const ManageExpenses = ({ route, navigation }) => {
       expenseContext.updateExpense(expenseId, {
         description: "bananas",
         amount: 19.99,
-        date: new Date(),
+        date: new Date("2023-05-16"),
       });
     } else {
       expenseContext.addExpense({
         description: "bananas",
         amount: 300.29,
-        date: new Date(),
+        date: new Date("2023-05-16"),
       });
     }
     navigation.goBack();

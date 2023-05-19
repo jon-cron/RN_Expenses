@@ -106,7 +106,10 @@ const ExpensesContextProvider = ({ children }) => {
   const [expenseState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
 
   const addExpense = (expenseData) => {
-    const newExpense = { expenseData, id: Math.floor(10000 * Math.random()) };
+    const newExpense = {
+      ...expenseData,
+      id: Math.floor(10000 * Math.random()),
+    };
     dispatch({ type: "ADD", payload: newExpense });
   };
   const deleteExpense = (id) => {
