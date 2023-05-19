@@ -1,10 +1,12 @@
-import React, { useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { Global } from "../constants/styles";
 import Button from "../components/UI/Button";
-
+import { ExpensesContext } from "../store/expenses-context";
 const ManageExpenses = ({ route, navigation }) => {
+  const expenseContext = useContext(ExpensesContext);
+
   // NOTE since we can land on this screen without params we must use params?. to avoid errors
   const expenseId = route.params?.expenseId;
   // NOTE the double !! turns whatever is attached to it a boolean. so if there is no expenseId it will read false; if there is an id it will read true
@@ -15,12 +17,30 @@ const ManageExpenses = ({ route, navigation }) => {
     });
   }, [isEditting, navigation]);
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    expenseContext.deleteExpense(expenseId);
+    navigation.goBack();
+  };
   const cancelHandler = () => {
     // NOTE this function allows you to close a screen and go back to the previous page
     navigation.goBack();
   };
-  const confirmHandler = () => {};
+  const confirmHandler = () => {
+    if (isEditting) {
+      expenseContext.updateExpense(expenseId, {
+        description: "bananas",
+        amount: 19.99,
+        date: new Date(),
+      });
+    } else {
+      expenseContext.addExpense({
+        description: "bananas",
+        amount: 300.29,
+        date: new Date(),
+      });
+    }
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>

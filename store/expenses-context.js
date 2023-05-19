@@ -77,7 +77,7 @@ export const ExpensesContext = createContext({
   expenses: [],
   addExpense: ({ description, amount, date }) => {},
   deleteExpense: (id) => {},
-  update: (id, { description, amount, date }) => {},
+  updateExpense: (id, { description, amount, date }) => {},
 });
 
 const expensesReducer = (state, action) => {
@@ -88,12 +88,12 @@ const expensesReducer = (state, action) => {
       const updateItemIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
       );
-      //   const itemToUpdate = state[updateItemIndex]
-      //   const updatedItem = {...itemToUpdate, ...action.payload.data}
-      //   const updateArr = [...state]
-      //   const updatedExpenses[updateItemIndex] = updatedItem
-      const updateExpenses = state.splice(updateItemIndex, 1, action.payload);
-      return [updateExpenses];
+      const itemToUpdate = state[updateItemIndex];
+      const updatedItem = { ...itemToUpdate, ...action.payload.data };
+      const updatedExpenses = [...state];
+      updatedExpenses[updateItemIndex] = updatedItem;
+      // const updateExpenses = state.splice(updateItemIndex, 1, action.payload);
+      return [updatedExpenses];
     case "DELETE":
       return state.filter((expense) => expense.id != action.payload);
     default:
