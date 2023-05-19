@@ -85,15 +85,14 @@ const expensesReducer = (state, action) => {
     case "ADD":
       return [{ ...action.payload }, ...state];
     case "UPDATE":
-      const updateItemIndex = state.findIndex(
+      const updatableExpenseIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
       );
-      const itemToUpdate = state[updateItemIndex];
-      const updatedItem = { ...itemToUpdate, ...action.payload.data };
+      const updatableExpense = state[updatableExpenseIndex];
+      const updatedItem = { ...updatableExpense, ...action.payload.data };
       const updatedExpenses = [...state];
-      updatedExpenses[updateItemIndex] = updatedItem;
-      // const updateExpenses = state.splice(updateItemIndex, 1, action.payload);
-      return [updatedExpenses];
+      updatedExpenses[updatableExpenseIndex] = updatedItem;
+      return updatedExpenses;
     case "DELETE":
       return state.filter((expense) => expense.id != action.payload);
     default:
