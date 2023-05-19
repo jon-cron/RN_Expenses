@@ -9,6 +9,7 @@ const AllExpenses = () => {
     <ExpensesOutput
       period={"All expenses"}
       expenses={expenseContext.expenses}
+      fallbackText="No Expenses"
     />
   );
 };
