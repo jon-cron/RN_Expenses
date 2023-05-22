@@ -21,6 +21,9 @@ const ManageExpenses = ({ route, navigation }) => {
   };
   // NOTE since we can land on this screen without params we must use params?. to avoid errors
   const expenseId = route.params?.expenseId;
+  const selectedExpense = expenseContext.expenses.find(
+    (expense) => expense.id === expenseId
+  );
   // NOTE the double !! turns whatever is attached to it a boolean. so if there is no expenseId it will read false; if there is an id it will read true
   const isEditting = !!expenseId;
   useLayoutEffect(() => {
@@ -37,6 +40,7 @@ const ManageExpenses = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <ExpenseForm
+        defaultValues={selectedExpense}
         isEditting={isEditting}
         onCancel={cancelHandler}
         onSubmit={confirmHandler}
