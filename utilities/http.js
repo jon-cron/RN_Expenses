@@ -2,8 +2,10 @@ import axios from "axios";
 
 const BACKEND_URL = `https://rn-expense-9f863-default-rtdb.firebaseio.com/`;
 
-export const storeExpense = (expenseData) => {
-  axios.post(BACKEND_URL + "expenses.json", expenseData);
+export const storeExpense = async (expenseData) => {
+  const res = await axios.post(BACKEND_URL + "expenses.json", expenseData);
+  const id = res.data.name;
+  return id;
 };
 export const getExpenses = async () => {
   const res = await axios.get(BACKEND_URL + "expenses.json");
@@ -18,4 +20,10 @@ export const getExpenses = async () => {
     expenses.push(expenseObj);
   }
   return expenses;
+};
+export const updateExpense = async (id, expenseData) => {
+  const res = await axios.put(
+    BACKEND_URL + `/expenses/${id}.json`,
+    expenseData
+  );
 };

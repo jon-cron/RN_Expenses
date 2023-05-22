@@ -87,7 +87,7 @@ const expensesReducer = (state, action) => {
       const reversed = action.payload.reverse();
       return reversed;
     case "ADD":
-      return [{ ...action.payload }, ...state];
+      return [action.payload, ...state];
     case "UPDATE":
       const updatableExpenseIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
@@ -111,11 +111,7 @@ const ExpensesContextProvider = ({ children }) => {
     dispatch({ type: "SET", payload: expenses });
   };
   const addExpense = (expenseData) => {
-    const newExpense = {
-      ...expenseData,
-      id: Math.floor(10000 * Math.random()),
-    };
-    dispatch({ type: "ADD", payload: newExpense });
+    dispatch({ type: "ADD", payload: expenseData });
   };
   const deleteExpense = (id) => {
     dispatch({ type: "DELETE", payload: id });

@@ -12,12 +12,12 @@ const ManageExpenses = ({ route, navigation }) => {
     // NOTE this function allows you to close a screen and go back to the previous page
     navigation.goBack();
   };
-  const confirmHandler = (expenseData) => {
+  const confirmHandler = async (expenseData) => {
     if (isEditting) {
       expenseContext.updateExpense(expenseId, expenseData);
     } else {
-      storeExpense(expenseData);
-      expenseContext.addExpense(expenseData);
+      const id = await storeExpense(expenseData);
+      expenseContext.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
   };
