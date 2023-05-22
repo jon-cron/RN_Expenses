@@ -11,19 +11,11 @@ const ManageExpenses = ({ route, navigation }) => {
     // NOTE this function allows you to close a screen and go back to the previous page
     navigation.goBack();
   };
-  const confirmHandler = () => {
+  const confirmHandler = (expenseData) => {
     if (isEditting) {
-      expenseContext.updateExpense(expenseId, {
-        description: "bananas",
-        amount: 19.99,
-        date: new Date("2023-05-16"),
-      });
+      expenseContext.updateExpense(expenseId, expenseData);
     } else {
-      expenseContext.addExpense({
-        description: "bananas",
-        amount: 300.29,
-        date: new Date("2023-05-16"),
-      });
+      expenseContext.addExpense(expenseData);
     }
     navigation.goBack();
   };
