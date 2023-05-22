@@ -3,12 +3,15 @@ import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import Input from "./Input";
 import { Global } from "../../constants/styles";
 import Button from "../UI/Button";
+import { getFormattedDate } from "../../utilities/date";
 const ExpenseForm = ({ isEditting, onCancel, onSubmit, defaultValues }) => {
   const [inputValues, setInputValues] = useState({
     // NOTE we are checking to see if defaultValues is undefined and conditionally rendering based upon that bool
     amount: defaultValues ? defaultValues.amount.toString() : "",
     description: defaultValues ? defaultValues.description : "",
-    date: defaultValues ? defaultValues.date.toISOString().slice(0, 10) : "",
+    date: defaultValues
+      ? getFormattedDate(defaultValues.date)
+      : getFormattedDate(new Date()),
   });
 
   const inputChanged = (inputIdentifier, enteredValue) => {
