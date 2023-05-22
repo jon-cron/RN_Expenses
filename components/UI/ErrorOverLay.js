@@ -2,12 +2,12 @@ import React from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { Global } from "../../constants/styles";
 import Button from "../UI/Button";
-const ErrorOverLay = () => {
+const ErrorOverLay = ({ message }) => {
   const onConfirm = () => {};
   return (
     <View style={styles.container}>
       <Text style={[styles.text, styles.title]}>An error occurred!!!</Text>
-      <Text style={styles.text}>{messaged}</Text>
+      <Text style={styles.text}>{message}</Text>
       <Button onPress={onConfirm}>Okay</Button>
     </View>
   );
