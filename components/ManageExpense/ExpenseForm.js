@@ -23,7 +23,7 @@ const ExpenseForm = () => {
       };
     });
   };
-
+  console.log(inputValues);
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Your Expense</Text>
@@ -33,8 +33,9 @@ const ExpenseForm = () => {
           label="Amount"
           textInputConfig={{
             keyboardType: "decimal-pad",
-            onChangeText: inputChanged.bind(),
-            value: amountValue,
+            // NOTE the first argument in bind is the "this" keyword, the second argument is the first param seen in the function "inputIdentifier"
+            onChangeText: inputChanged.bind(this, "amount"),
+            value: inputValues.amount,
           }}
         />
         <Input
@@ -43,7 +44,8 @@ const ExpenseForm = () => {
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
-            onChangeText: () => {},
+            onChangeText: inputChanged.bind(this, "date"),
+            value: inputValues.date,
           }}
         />
       </View>
@@ -51,6 +53,8 @@ const ExpenseForm = () => {
         label="Description"
         textInputConfig={{
           multiline: true,
+          onChangeText: inputChanged.bind(this, "description"),
+          value: inputValues.description,
         }}
       />
     </View>
