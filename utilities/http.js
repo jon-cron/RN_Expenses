@@ -21,9 +21,9 @@ export const getExpenses = async () => {
   }
   return expenses;
 };
-export const updateExpense = async (id, expenseData) => {
-  const res = await axios.put(
-    BACKEND_URL + `/expenses/${id}.json`,
-    expenseData
-  );
+export const updateExpense = (id, expenseData) => {
+  return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData);
+};
+export const deleteExpense = (id) => {
+  return axios.delete(BACKEND_URL + `expenses/${id}.json`);
 };
