@@ -84,7 +84,8 @@ export const ExpensesContext = createContext({
 const expensesReducer = (state, action) => {
   switch (action.type) {
     case "SET":
-      return action.payload;
+      const reversed = action.payload.reverse();
+      return reversed;
     case "ADD":
       return [{ ...action.payload }, ...state];
     case "UPDATE":
