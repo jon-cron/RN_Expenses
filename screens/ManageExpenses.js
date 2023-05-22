@@ -7,21 +7,6 @@ import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 const ManageExpenses = ({ route, navigation }) => {
   const expenseContext = useContext(ExpensesContext);
-
-  // NOTE since we can land on this screen without params we must use params?. to avoid errors
-  const expenseId = route.params?.expenseId;
-  // NOTE the double !! turns whatever is attached to it a boolean. so if there is no expenseId it will read false; if there is an id it will read true
-  const isEditting = !!expenseId;
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: isEditting ? "Edit Expense" : "Add Expense",
-    });
-  }, [isEditting, navigation]);
-
-  const handleDelete = () => {
-    expenseContext.deleteExpense(expenseId);
-    navigation.goBack();
-  };
   const cancelHandler = () => {
     // NOTE this function allows you to close a screen and go back to the previous page
     navigation.goBack();
@@ -42,17 +27,29 @@ const ManageExpenses = ({ route, navigation }) => {
     }
     navigation.goBack();
   };
+  // NOTE since we can land on this screen without params we must use params?. to avoid errors
+  const expenseId = route.params?.expenseId;
+  // NOTE the double !! turns whatever is attached to it a boolean. so if there is no expenseId it will read false; if there is an id it will read true
+  const isEditting = !!expenseId;
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: isEditting ? "Edit Expense" : "Add Expense",
+    });
+  }, [isEditting, navigation]);
+
+  const handleDelete = () => {
+    expenseContext.deleteExpense(expenseId);
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
-      <ExpenseForm />
-      <View style={styles.buttonContainer}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEditting ? "Update" : "Add"}
-        </Button>
-      </View>
+      <ExpenseForm
+        isEditting={isEditting}
+        onCancel={cancelHandler}
+        onSubmit={confirmHandler}
+      />
+
       {isEditting && (
         <View style={styles.deleteContainer}>
           <IconButton
