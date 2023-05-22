@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,19 @@ import {
 import Input from "./Input";
 
 const ExpenseForm = () => {
-  const amountChangedHandler = () => {};
+  const [inputValues, setInputValues] = useState({
+    amount: "",
+    description: "",
+    date: "",
+  });
+  const inputChanged = (inputIdentifier, enteredValue) => {
+    setInputValues((currentInputValue) => {
+      return {
+        ...currentInputValue,
+        [inputIdentifier]: enteredValue,
+      };
+    });
+  };
 
   return (
     <View style={styles.form}>
@@ -21,7 +33,8 @@ const ExpenseForm = () => {
           label="Amount"
           textInputConfig={{
             keyboardType: "decimal-pad",
-            onChangeText: amountChangedHandler,
+            onChangeText: inputChanged.bind(),
+            value: amountValue,
           }}
         />
         <Input
